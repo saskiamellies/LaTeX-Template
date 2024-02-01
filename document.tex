@@ -1,0 +1,152 @@
+\documentclass[a4paper, 11pt]{article}
+
+% Paket für verlinkte Querverweise
+\usepackage[hidelinks]{hyperref}
+
+% Pakete für Zeichensatz und Sprache
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+% Nutze einen Font ohne Serifen
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Paket für Bibliografie
+\usepackage[style=authoryear, backend=biber]{biblatex}
+\addbibresource{bibliography.bib}
+\usepackage{csquotes}
+
+% Einstellungen für Seitenlayout
+\usepackage[left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+
+% Paket für Absatzformatierung
+\usepackage{parskip}
+
+% Paket für Zeilenabstand
+\usepackage{setspace}
+\onehalfspacing
+
+% Paket damit Tabellen dort landen wo sie sollen
+\usepackage{float}
+
+% Paket für Kopf- und Fußzeilen
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% Paket für Titelseite
+\usepackage{titling}
+
+% Paket für Tabellenzellen mit Zeilenumbruch
+\usepackage{makecell}
+
+\usepackage{graphicx}
+
+% Paket für Glossar
+\usepackage[acronym]{glossaries}
+\makenoidxglossaries
+
+% Glossareinträge
+\newglossaryentry{latex}
+{
+    name=latex,
+    description={Is a markup language specially suited 
+    for scientific documents}
+}
+\newacronym{abk}{Abk.}{Abkürzung. Wird in der Liste der Akronyme aufgeführt.}
+
+% Titelinformationen
+\selectlanguage{ngerman}
+\title{Titel der Arbeit}
+\author{Heiner Hansen}
+\date{\today}
+
+\begin{document}
+
+% Titelseite
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+        \Huge
+        \textbf{\thetitle}
+        
+        \vspace{0.5cm}
+        \LARGE
+        Dies ist der Untertitel
+        
+        \vspace{1.5cm}
+        
+        \Large
+        verfasst von \\
+        \theauthor \\
+        Matrikelnummer: 123456
+        
+        \vfill
+        
+        betreut von \\
+        Prof. Dr. Pi Rogge \\
+        Berliner Hochschule für Technik \\
+        Von Leitner Institut für verteiltes Echtzeit-Java
+        
+        \vspace{1.5cm}
+        
+        \Large
+        \thedate
+        
+    \end{center}
+\end{titlepage}
+
+% Inhaltsverzeichnis
+% Keine Seitenzahlen beim Inhaltsverzeichnis
+\pagenumbering{gobble}
+\tableofcontents
+\newpage
+
+% Abbildungsverzeichnis und Tabellenverzeichnis
+\pagenumbering{Roman}
+\listoffigures
+% Tabellenverzeichnis
+\listoftables
+\newpage
+
+% Glossar
+\printnoidxglossary[type=\acronymtype,title=Abkürzungsverzeichnis]
+\newpage
+
+%Sperrvermerk ohne Seitenzahlen
+\include{chapter/1 sperrvermerk}
+
+% Seitenzahlen ab hier, Start bei 1
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% Beginn des Hauptteils
+\include{chapter/2 einleitung}
+\include{chapter/99 fazit}
+
+\medskip
+\newpage
+
+% Literaturverzeichnis
+\newpage
+\printbibliography[]
+\newpage
+
+\section*{Erklärung der Selbstständigkeit}
+
+Hiermit versichere ich, dass ich die vorliegende Arbeit selbstständig, ohne unzulässige Hilfe Dritter und ohne Benutzung anderer als der angegebenen Hilfsmittel angefertigt habe.
+
+Die aus fremden Quellen direkt oder indirekt übernommenen Gedanken sind als solche kenntlich gemacht. 
+
+Berlin, den \thedate
+
+% Arbeitsbescheinigung
+\newpage
+\section*{Anhang}
+% Anhang als Inline-Datei
+% \includegraphics[scale=0.8]{Datei.pdf}
+
+\end{document}
